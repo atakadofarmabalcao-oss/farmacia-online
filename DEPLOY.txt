@@ -1,0 +1,52 @@
+# 💊 Farmácia — Sistema de Entregas Online
+
+## Deploy no Railway (GRÁTIS — 5 minutos)
+
+### Passo 1 — Crie uma conta
+Acesse https://railway.app e crie uma conta gratuita (pode usar o Google).
+
+### Passo 2 — Crie um projeto
+1. Clique em **"New Project"**
+2. Escolha **"Deploy from GitHub repo"**
+   - OU clique em **"Deploy from template"** → selecione Node.js
+
+### Passo 3 — Suba os arquivos via GitHub (mais fácil)
+1. Crie uma conta no GitHub: https://github.com
+2. Crie um repositório novo (pode ser privado)
+3. Faça upload desta pasta toda
+4. No Railway, conecte o repositório
+5. O Railway detecta o Node.js automaticamente e faz o deploy
+
+### Passo 4 — Alternativa: upload direto com Railway CLI
+```bash
+npm install -g @railway/cli
+railway login
+railway init
+railway up
+```
+
+### Passo 5 — Gere o domínio
+No painel do Railway:
+1. Vá em Settings → Networking
+2. Clique em **"Generate Domain"**
+3. Você receberá uma URL tipo: `farmacia-entregas.up.railway.app`
+
+### Pronto!
+Acesse a URL em qualquer computador, celular ou tablet.
+Balcão e Caixa usam o MESMO endereço — os pedidos sincronizam em tempo real.
+
+---
+
+## Outras opções gratuitas
+- **Render**: https://render.com (grátis, mas dorme após inatividade)
+- **Fly.io**: https://fly.io (grátis com cartão)
+- **Vercel** + **Railway** (separados: frontend + backend)
+
+---
+
+## Rodar localmente (rede interna)
+```bash
+npm install
+node server.js
+```
+Acesse: http://localhost:3000
