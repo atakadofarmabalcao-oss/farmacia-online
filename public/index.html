@@ -177,7 +177,11 @@ textarea.finp{resize:none;min-height:80px;line-height:1.5;}
 /* OBS */
 .cobs{padding:9px 16px;background:rgba(245,158,11,.05);border-bottom:1px solid rgba(245,158,11,.12);display:flex;gap:10px;font-size:12px;color:#fbbf24;}
 .obs-tag{font-size:9px;font-weight:700;letter-spacing:1px;background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.25);border-radius:3px;padding:2px 6px;flex-shrink:0;margin-top:1px;}
-
+/* IMG ENTREGA */
+.iconEntrega{
+  width: 20px;
+  height: 20px;
+}
 /* FOOTER */
 .cftr{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;gap:10px;}
 .cflags{display:flex;gap:6px;flex-wrap:wrap;}
@@ -285,6 +289,7 @@ textarea.finp{resize:none;min-height:80px;line-height:1.5;}
           <div class="rrow">
             <div class="ropt" onclick="selR('Telefone',this)"><div class="rdot"></div>📞 Telefone</div>
             <div class="ropt" onclick="selR('WhatsApp',this)"><div class="rdot"></div>💬 WhatsApp</div>
+            <div class="ropt" onclick="selR('Presencial',this)"><div class="rdot"></div>🏠 Presencial loja</div>
           </div>
         </div>
       </div>
@@ -309,6 +314,7 @@ textarea.finp{resize:none;min-height:80px;line-height:1.5;}
             <div class="popt" onclick="selP('Pix',this)">🔷 Pix</div>
             <div class="popt" onclick="selP('Cartão Débito',this)">💳 Débito</div>
             <div class="popt" onclick="selP('Cartão Crédito',this)">💳 Crédito</div>
+            <div class="popt" onclick="selP('Crediario',this)"> 💳 Crediário</div>
           </div>
         </div>
       </div>
@@ -330,6 +336,11 @@ textarea.finp{resize:none;min-height:80px;line-height:1.5;}
               <input type="checkbox" id="c-tax">
               <div class="cbox"></div>
               <span class="clbl">💲 Cliente pagou a taxa</span>
+            </label>
+            <label class="crow" onclick="tglChk(this)">
+              <input type="checkbox" id="c-rec">
+              <div class="cbox"></div>
+              <span class="clbl">🏍 Entrega Rápida, urbanos</span>
             </label>
           </div>
         </div>
