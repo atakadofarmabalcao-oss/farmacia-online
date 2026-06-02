@@ -58,9 +58,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--black);color:var(--white)
 
 /* ── CARDS ── */
 .card{background:var(--b2);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;}
-.card-hd{display:flex;align-items:center;gap:10px;padding:11px 16px;border-bottom:1px solid var(--border);}
+.card-hd{display:flex;align-items:center;gap:10px;padding:11px 16px;border-bottom:1px solid var(--border);background:  var(--red);}
 .card-ico{width:28px;height:28px;background:var(--red-dim);border:1px solid rgba(217,4,41,.25);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
-.card-ht{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--w3);}
+.card-ht{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color: #fff;}
 .card-bd{padding:14px;display:flex;flex-direction:column;gap:12px;}
 
 /* ── FORM GRID ── */
@@ -71,11 +71,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--black);color:var(--white)
 /* ── FIELDS ── */
 .fld{display:flex;flex-direction:column;gap:4px;}
 .flbl{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--w4);}
-.finp{background:var(--b3);border:1px solid var(--border2);border-radius:var(--r);padding:9px 12px;font-size:13px;font-family:'DM Sans';color:var(--white);outline:none;transition:border-color .18s,box-shadow .18s;width:100%;}
+.finp{background:(--b3);border:1px solid var(--border2);border-radius:var(--r);padding:9px 12px;font-size:13px;font-family:'DM Sans';color:black;outline:none;transition:border-color .18s,box-shadow .18s;width:100%;}
 .finp::placeholder{color:var(--b5);}
 .finp:focus{border-color:var(--red);box-shadow:0 0 0 3px var(--red-glow);}
 textarea.finp{resize:none;min-height:80px;line-height:1.5;}
-
+.finp,
+textarea.finp{
+    text-transform: uppercase;
+}
 /* ── RADIO ── */
 .rrow{display:flex;gap:8px;}
 .ropt{flex:1;border:1px solid var(--border2);border-radius:var(--r);padding:9px 12px;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:500;color:var(--w4);transition:all .18s;background:var(--b3);user-select:none;}
@@ -396,7 +399,11 @@ textarea.finp{resize:none;min-height:80px;line-height:1.5;}
 <script>
 const socket = io();
 let orders=[], filt='todos', sOrig='', sPay='';
-
+document.querySelectorAll('.finp').forEach(el => {
+    el.addEventListener('input', () => {
+        el.value = el.value.toUpperCase();
+    });
+});
 // ── CONEXÃO ──
 socket.on('connect',()=>{
   document.getElementById('cdot').classList.add('on');
