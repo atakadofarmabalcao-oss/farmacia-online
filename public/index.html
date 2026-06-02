@@ -208,7 +208,7 @@ textarea.finp{
 .eico{width:54px;height:54px;background:var(--b3);border:1px solid var(--border2);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:22px;opacity:.3;}
 .et{font-family:'Bebas Neue';font-size:20px;letter-spacing:2px;color:var(--w4);margin-bottom:8px;}
 .es{font-size:13px;color:var(--w5);}
-
+.troco{display: none;}
 /* ── TOAST ── */
 .toast{position:fixed;bottom:22px;right:22px;background:var(--b3);border:1px solid var(--border2);color:var(--white);padding:13px 18px;border-radius:var(--rl);font-size:13px;font-weight:500;display:flex;align-items:center;gap:10px;box-shadow:0 8px 32px rgba(0,0,0,.5);z-index:9999;transform:translateY(80px) scale(.95);opacity:0;transition:all .32s cubic-bezier(.34,1.56,.64,1);max-width:320px;pointer-events:none;}
 .toast.on{transform:translateY(0) scale(1);opacity:1;}
@@ -314,6 +314,12 @@ textarea.finp{
         <div class="card-bd">
           <div class="pgrid">
             <div class="popt" onclick="selP('Dinheiro',this)">💵 Dinheiro</div>
+            <div class="troco-box" id="troco-box" style="display:none; margin-top:12px;">
+  <div class="fld">
+    <span class="flbl">Troco para</span>
+    <input class="troco-inp" id="f-troco" type="text" placeholder="0,00">
+  </div>
+</div>
             <div class="popt" onclick="selP('Pix',this)">🔷 Pix</div>
             <div class="popt" onclick="selP('Cartão Débito',this)">💳 Débito</div>
             <div class="popt" onclick="selP('Cartão Crédito',this)">💳 Crédito</div>
@@ -352,15 +358,11 @@ textarea.finp{
 
   </div>
 
-  <div class="ftr">
-    <div class="troco">
-      <span class="troco-lbl">Troco para</span>
-      <span style="font-size:13px;color:var(--w4);margin:0 2px;">R$</span>
-      <input class="troco-inp" id="f-troco" type="text" placeholder="0,00">
-    </div>
-    <button class="btn-send" id="btn-send" onclick="enviar()">
-      Enviar para o Caixa <span class="arr">→</span>
-    </button>
+   <div class="ftr">
+  <button class="btn-send" id="btn-send" onclick="enviar()">
+    Enviar para o Caixa <span class="arr">→</span>
+  </button>
+</div>
   </div>
 
 </div>
@@ -448,9 +450,11 @@ function resetF(){
   ['c-rec','c-env','c-tax'].forEach(id=>{
     document.getElementById(id).checked=false;
     document.getElementById(id).closest('.crow').classList.remove('chk');
+    
   });
   document.querySelectorAll('.ropt').forEach(e=>e.classList.remove('sel'));
   document.querySelectorAll('.popt').forEach(e=>e.classList.remove('sel'));
+  document.getElementById('troco-box').style.display = 'none';
   sOrig=''; sPay='';
 }
 
@@ -586,8 +590,24 @@ setInterval(()=>{
 
 // ── UI HELPERS ──
 function selR(v,el){sOrig=v;el.closest('.rrow').querySelectorAll('.ropt').forEach(e=>e.classList.remove('sel'));el.classList.add('sel');}
-function selP(v,el){sPay=v;el.closest('.pgrid').querySelectorAll('.popt').forEach(e=>e.classList.remove('sel'));el.classList.add('sel');}
-function tglChk(el){
+function selP(v,el){
+  sPay=v;
+
+  el.closest('.pgrid')
+    .querySelectorAll('.popt')
+    .forEach(e=>e.classList.remove('sel'));
+
+  el.classList.add('sel');
+
+  const trocoBox = document.getElementById('troco-box');
+
+  if(v === 'Dinheiro'){
+    trocoBox.style.display = 'block';
+  } else {
+    trocoBox.style.display = 'none';
+    document.getElementById('f-troco').value = '';
+  }
+}function tglChk(el){
   event.preventDefault();
   el.classList.toggle('chk');
   const inp=el.querySelector('input');
